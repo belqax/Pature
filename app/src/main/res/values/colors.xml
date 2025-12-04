@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- Customize your light theme here. -->
+    <color name="pature_primary">#F5B79F</color>
+    <color name="pature_on_primary">#3A2A25</color>
+    <color name="pature_primary_container">#FFE4D8</color>
+    <color name="pature_on_primary_container">#3E2316</color>
+
+    <color name="pature_secondary">#D5916C</color>
+    <color name="pature_on_secondary">#3A261C</color>
+    <color name="pature_secondary_container">#F4D7C8</color>
+    <color name="pature_on_secondary_container">#402319</color>
+
+    <color name="pature_tertiary">#C9AFA6</color>
+    <color name="pature_on_tertiary">#3A2E2A</color>
+    <color name="pature_tertiary_container">#F2E7E2</color>
+    <color name="pature_on_tertiary_container">#382E2A</color>
+
+    <color name="pature_background">#FFF8F3</color>
+    <color name="pature_on_background">#1A1A1A</color>
+
+    <color name="pature_surface">#FFFFFF</color>
+    <color name="pature_on_surface">#1A1A1A</color>
+
+    <color name="pature_surface_variant">#F0E3DD</color>
+    <color name="pature_on_surface_variant">#51443E</color>
+
+    <color name="pature_outline">#C7B8B2</color>
+    <color name="pature_outline_variant">#E7D8D2</color>
+
+    <color name="pature_error">#BA1A1A</color>
+    <color name="pature_on_error">#FFFFFF</color>
+    <color name="pature_error_container">#FFDAD4</color>
+    <color name="pature_on_error_container">#410002</color>
+
+    <!-- Customize your dark theme here. -->
+
+    <color name="pature_primary_dark">#F5B79F</color>
+    <color name="pature_on_primary_dark">#43271C</color>
+    <color name="pature_primary_container_dark">#6A4634</color>
+    <color name="pature_on_primary_container_dark">#FFE4D8</color>
+
+    <color name="pature_secondary_dark">#D5916C</color>
+    <color name="pature_on_secondary_dark">#442A1F</color>
+    <color name="pature_secondary_container_dark">#6A4534</color>
+    <color name="pature_on_secondary_container_dark">#F4D7C8</color>
+
+    <color name="pature_tertiary_dark">#C9AFA6</color>
+    <color name="pature_on_tertiary_dark">#3E302C</color>
+    <color name="pature_tertiary_container_dark">#5E4E47</color>
+    <color name="pature_on_tertiary_container_dark">#F2E7E2</color>
+
+    <color name="pature_background_dark">#2A1E1A</color>
+    <color name="pature_on_background_dark">#FCEFEA</color>
+
+    <color name="pature_surface_dark">#332521</color>
+    <color name="pature_on_surface_dark">#FCEFEA</color>
+
+    <color name="pature_surface_variant_dark">#56463F</color>
+    <color name="pature_on_surface_variant_dark">#DCC5BB</color>
+
+    <color name="pature_outline_dark">#A38D83</color>
+    <color name="pature_outline_variant_dark">#6C5A53</color>
+
+    <color name="pature_error_dark">#BA1A1A</color>
+    <color name="pature_on_error_dark">#FFFFFF</color>
+    <color name="pature_error_container_dark">#93000A</color>
+    <color name="pature_on_error_container_dark">#FFDAD4</color>
+
+</resources>

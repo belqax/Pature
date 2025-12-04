@@ -1,0 +1,40 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Pature" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- PRIMARY -->
+        <item name="colorPrimary">@color/pature_primary_dark</item>
+        <item name="colorOnPrimary">@color/pature_on_primary_dark</item>
+        <item name="colorPrimaryContainer">@color/pature_primary_container_dark</item>
+        <item name="colorOnPrimaryContainer">@color/pature_on_primary_container_dark</item>
+
+        <!-- SECONDARY -->
+        <item name="colorSecondary">@color/pature_secondary_dark</item>
+        <item name="colorOnSecondary">@color/pature_on_secondary_dark</item>
+        <item name="colorSecondaryContainer">@color/pature_secondary_container_dark</item>
+        <item name="colorOnSecondaryContainer">@color/pature_on_secondary_container_dark</item>
+
+        <!-- TERTIARY -->
+        <item name="colorTertiary">@color/pature_tertiary_dark</item>
+        <item name="colorOnTertiary">@color/pature_on_tertiary_dark</item>
+        <item name="colorTertiaryContainer">@color/pature_tertiary_container_dark</item>
+        <item name="colorOnTertiaryContainer">@color/pature_on_tertiary_container_dark</item>
+
+        <!-- SURFACE -->
+        <item name="colorSurface">@color/pature_surface_dark</item>
+        <item name="colorOnSurface">@color/pature_on_surface_dark</item>
+        <item name="colorSurfaceVariant">@color/pature_surface_variant_dark</item>
+        <item name="colorOnSurfaceVariant">@color/pature_on_surface_variant_dark</item>
+
+        <!-- OUTLINES -->
+        <item name="colorOutline">@color/pature_outline_dark</item>
+        <item name="colorOutlineVariant">@color/pature_outline_variant_dark</item>
+
+        <!-- ERROR -->
+        <item name="colorError">@color/pature_error_dark</item>
+        <item name="colorOnError">@color/pature_on_error_dark</item>
+        <item name="colorErrorContainer">@color/pature_error_container_dark</item>
+        <item name="colorOnErrorContainer">@color/pature_on_error_container_dark</item>
+
+    </style>
+</resources>

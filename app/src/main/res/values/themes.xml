@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- LIGHT THEME DEFINITION -->
+    <style name="Theme.Pature" parent="Theme.Material3.DayNight.NoActionBar">
+
+        <!-- PRIMARY -->
+        <item name="colorPrimary">@color/pature_primary</item>
+        <item name="colorOnPrimary">@color/pature_on_primary</item>
+        <item name="colorPrimaryContainer">@color/pature_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/pature_on_primary_container</item>
+
+        <!-- SECONDARY -->
+        <item name="colorSecondary">@color/pature_secondary</item>
+        <item name="colorOnSecondary">@color/pature_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/pature_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/pature_on_secondary_container</item>
+
+        <!-- TERTIARY -->
+        <item name="colorTertiary">@color/pature_tertiary</item>
+        <item name="colorOnTertiary">@color/pature_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/pature_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/pature_on_tertiary_container</item>
+
+        <!-- SURFACE -->
+        <item name="colorSurface">@color/pature_surface</item>
+        <item name="colorOnSurface">@color/pature_on_surface</item>
+        <item name="colorSurfaceVariant">@color/pature_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/pature_on_surface_variant</item>
+
+        <!-- OUTLINES -->
+        <item name="colorOutline">@color/pature_outline</item>
+        <item name="colorOutlineVariant">@color/pature_outline_variant</item>
+
+        <!-- ERROR -->
+        <item name="colorError">@color/pature_error</item>
+        <item name="colorOnError">@color/pature_on_error</item>
+        <item name="colorErrorContainer">@color/pature_error_container</item>
+        <item name="colorOnErrorContainer">@color/pature_on_error_container</item>
+
+    </style>
+
+</resources>
