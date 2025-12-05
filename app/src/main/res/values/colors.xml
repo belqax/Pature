@@ -2,6 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pature_error_text">#C94B4B</color>      <!-- мягкий красный -->
+    <color name="pature_error_outline">#E36A6A</color>   <!-- светлый бордер -->
+
     <!-- Customize your light theme here. -->
     <color name="pature_primary">#F5B79F</color>
     <color name="pature_on_primary">#3A2A25</color>

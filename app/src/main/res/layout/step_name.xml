@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="24dp"
+    android:paddingTop="48dp"
+    android:paddingBottom="24dp">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/petNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Как зовут питомца?"
+        android:textSize="24sp"
+        android:fontFamily="@font/nunitoblack"
+        android:textColor="?colorOnBackground"
+        android:letterSpacing="0.05"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="48dp"/>
+
+    <!-- Поле ввода имени -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/nameLayout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Введите имя"
+        app:boxStrokeColor="?colorOutline"
+        app:boxStrokeWidth="1.5dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/petNameTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords"
+            android:fontFamily="@font/nunitoblack"
+            android:textSize="16sp"
+            android:paddingVertical="16dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Кнопка Далее -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nextBtn"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="Далее"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"
+        android:textSize="16sp"
+        app:cornerRadius="16dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameLayout"/>
+
+    <!-- Подсказка -->
+    <TextView
+        android:id="@+id/hintText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Можно использовать русские и английские буквы"
+        android:textSize="12sp"
+        android:textColor="?colorSecondary"
+        android:fontFamily="@font/nunitoreg"
+        android:alpha="0.7"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nextBtn"/>
+
+    <!-- Дополнительный нижний блок -->
+    <LinearLayout
+        android:id="@+id/bottomInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/infoIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:alpha="0.9"
+            android:contentDescription="Информация"
+            android:src="@drawable/ic_info"
+            app:tint="?colorPrimary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/nunitobold"
+            android:text="Имя сохранится в вашем профиле"
+            android:textColor="@color/pature_secondary"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

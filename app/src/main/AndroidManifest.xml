@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pature">
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,12 +21,17 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="true"/>
-
+        <activity
+            android:name=".activity.OnboardingActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".activity.HomeActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>

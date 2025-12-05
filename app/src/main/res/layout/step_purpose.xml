@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Для чего вы ищете?"
+        android:textSize="24sp"
+        android:textColor="?colorOnBackground"
+        android:fontFamily="@font/nunitoblack"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/breedingBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Случка"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/walkBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Прогулка"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/funBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Игры"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/socialBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Общение"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"/>
+
+</LinearLayout>

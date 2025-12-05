@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Кастомная тема для обычного DatePickerDialog -->
+    <style name="Theme.Pature.NativeDatePicker" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+
+        <!-- Цвета основного окна -->
+        <item name="android:background">@color/pature_surface</item>
+
+        <!-- Цвет заголовка -->
+        <item name="android:textColorPrimary">@color/pature_on_surface</item>
+
+        <!-- Цвет текста внутри календаря -->
+        <item name="android:textColor">@color/pature_on_surface</item>
+
+        <!-- Цвет кнопок "OK" и "Cancel" -->
+        <item name="android:buttonStyle">@style/PatureDialogButton</item>
+
+        <!-- Акцент (например, выбранная дата или выделение) -->
+        <item name="android:colorAccent">@color/pature_primary</item>
+
+    </style>
+
+    <!-- Кастом кнопок -->
+    <style name="PatureDialogButton" parent="@android:style/Widget.Button">
+        <item name="android:textColor">@color/pature_primary</item>
+        <item name="android:fontFamily">@font/nunitobold</item>
+    </style>
+
+</resources>

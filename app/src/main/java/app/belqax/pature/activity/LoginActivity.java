@@ -1,5 +1,6 @@
-package app.belqax.pature;
+package app.belqax.pature.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -19,11 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
+import app.belqax.pature.R;
+
 public class LoginActivity extends AppCompatActivity {
 
     private boolean isLogin = true;
 
-    private TextView title;
+
     private TextInputEditText emailField;
     private TextInputEditText passwordField;
     private MaterialButton actionButton;
@@ -38,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        title = findViewById(R.id.loginTitle);
         emailField = findViewById(R.id.inputEmail);
         passwordField = findViewById(R.id.inputPassword);
         actionButton = findViewById(R.id.buttonAction);
@@ -65,25 +67,24 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         if (isLogin) {
-            Toast.makeText(this, "Вход выполнен", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            finish();
+
         } else {
-            Toast.makeText(this, "Регистрация завершена", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(LoginActivity.this, OnboardingActivity.class));
         }
     }
 
     private void toggleMode() {
         isLogin = !isLogin;
 
-        animateSwitch(title);
         animateSwitch(actionButton);
         animateSwitch(switchMode);
 
         if (isLogin) {
-            title.setText("Вход");
             actionButton.setText("Войти");
             switchMode.setText("Нет аккаунта? Создать");
         } else {
-            title.setText("Регистрация");
             actionButton.setText("Создать аккаунт");
             switchMode.setText("Уже есть аккаунт? Войти");
         }
@@ -102,11 +103,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 // После завершения первой анимации меняем текст
                 if (isLogin) {
-                    title.setText("Вход");
                     actionButton.setText("Войти");
                     switchMode.setText("Нет аккаунта? Создать");
                 } else {
-                    title.setText("Регистрация");
                     actionButton.setText("Создать аккаунт");
                     switchMode.setText("Уже есть аккаунт? Войти");
                 }
