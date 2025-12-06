@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Скругление -->
+    <corners android:radius="16dp"/>
+
+    <!-- Цвет фона -->
+    <solid android:color="?colorSurfaceVariant"/>
+
+    <!-- Легкая граница при необходимости -->
+    <stroke
+        android:width="0.5dp"
+        android:color="?colorOutlineVariant"/>
+</shape>

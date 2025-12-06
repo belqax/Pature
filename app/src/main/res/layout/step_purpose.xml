@@ -52,6 +52,15 @@
         android:text="Общение"
         android:textSize="16sp"
         android:textAllCaps="false"
-        android:fontFamily="@font/nunitoblack"/>
+        android:fontFamily="@font/nunitoblack"
+        android:layout_marginBottom="16dp"/>
 
+    <Button
+        android:id="@+id/afterBtn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Решу позже"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"/>
 </LinearLayout>

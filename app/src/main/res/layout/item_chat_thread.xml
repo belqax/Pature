@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:paddingEnd="16dp"
+    android:paddingVertical="8dp"
+    android:background="@drawable/bg_chat_item_ripple"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginVertical="3dp"
+    tools:ignore="RtlSymmetry">
+
+    <ImageView
+        android:layout_marginStart="16dp"
+        android:id="@+id/chatAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_cat"
+        android:scaleType="centerCrop"
+        android:background="@drawable/bg_round_imagebutton_selector"
+        android:padding="6dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/chatTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Приют «Снежа»"
+        android:textSize="16sp"
+        android:fontFamily="@font/nunitoblack"
+        android:textColor="?attr/colorOnSurface"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@id/chatAvatar"
+        app:layout_constraintTop_toTopOf="@id/chatAvatar"
+        app:layout_constraintEnd_toStartOf="@id/chatTime"
+        />
+
+    <TextView
+        android:id="@+id/chatTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12:45"
+        android:textSize="12sp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        app:layout_constraintTop_toTopOf="@id/chatTitle"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/chatLastMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Спасибо, что откликнулись!"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintStart_toStartOf="@id/chatTitle"
+        app:layout_constraintTop_toBottomOf="@id/chatTitle"
+        app:layout_constraintEnd_toStartOf="@id/unreadBadge"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/unreadBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="20dp"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="2dp"
+        android:gravity="center"
+        android:text="3"
+        android:textSize="12sp"
+        android:textColor="@color/pature_on_primary"
+        android:background="@drawable/ic_badge"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/chatLastMessage"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:layout_marginStart="-8dp"
+        android:layout_marginBottom="-8dp"
+        android:id="@+id/chatFavoriteIcon"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:src="@drawable/ic_star"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/chatTitle"
+        app:layout_constraintStart_toStartOf="@+id/chatAvatar"
+        app:tint="@color/pature_primary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

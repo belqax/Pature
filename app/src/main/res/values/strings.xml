@@ -2,4 +2,182 @@
     <string name="app_name">Paturé</string>
     <string name="app_name_up">PATURÉ</string>
     <string name="belqax">Belqax © 2025</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Экран поиска -->
+    <string name="search_hint">Поиск питомца</string>
+    <string name="search_filters">Фильтры</string>
+    <string name="search_empty_state">Ничего не найдено. Попробуй изменить запрос или фильтры.</string>
+
+    <!-- Фильтры: общие -->
+    <string name="search_filter_any">Любой</string>
+
+    <!-- Фильтры: вид животного -->
+    <string name="search_filter_species">Вид</string>
+    <string name="search_filter_dog">Собака</string>
+    <string name="search_filter_cat">Кошка</string>
+
+    <!-- Фильтры: пол -->
+    <string name="search_filter_gender">Пол</string>
+    <string name="search_filter_male">Мальчик</string>
+    <string name="search_filter_female">Девочка</string>
+
+    <!-- Фильтры: возраст -->
+    <string name="search_filter_age">Возраст (лет)</string>
+    <string name="search_age_years_short">г.</string>
+
+    <!-- Фильтры: чекбоксы -->
+    <string name="search_filter_with_photo">Только с фото</string>
+    <string name="search_filter_favorites_only">Только избранные</string>
+
+    <!-- Фильтры: кнопки -->
+    <string name="search_filter_reset">Сбросить</string>
+    <string name="search_filter_apply">Применить</string>
+
+
+    <string name="chats_title">Чаты</string>
+    <string name="chat_filters_title">Фильтры чатов</string>
+    <string name="chat_filter_only_unread">Только с непрочитанными</string>
+    <string name="chat_filter_only_favorites">Только избранные</string>
+    <string name="chat_filter_sort">Сортировка</string>
+    <string name="chat_filter_sort_newest">Сначала новые</string>
+    <string name="chat_filter_sort_oldest">Сначала старые</string>
+    <string name="chat_filter_sort_name">По имени</string>
+
+
+    <string name="events_title">События</string>
+    <string name="events_filter_title">Фильтры событий</string>
+    <string name="event_filter_only_unread">Только непрочитанные</string>
+    <string name="event_filter_type">Тип события</string>
+    <string name="event_filter_type_all">Все</string>
+    <string name="event_filter_type_new_contacts">Новые контакты</string>
+    <string name="event_filter_type_messages">Сообщения</string>
+    <string name="event_filter_type_updates">Обновления</string>
+    <string name="event_filter_type_reminders">Напоминания</string>
+
+    <string name="events_section_today">Сегодня</string>
+    <string name="events_section_yesterday">Вчера</string>
+    <string name="events_section_earlier">Ранее</string>
+
+    <!-- Профиль -->
+    <string name="profile_title">Профиль</string>
+    <string name="profile_avatar_content_description">Аватар профиля</string>
+
+    <string name="profile_name_placeholder">Имя пользователя</string>
+    <string name="profile_age_label">Возраст</string>
+    <string name="profile_age_placeholder">Не указан</string>
+    <string name="profile_about_label">О себе</string>
+    <string name="profile_about_placeholder">Расскажите о себе и о том, кого вы ищете.</string>
+    <string name="profile_location_label">Местоположение</string>
+    <string name="profile_location_placeholder">Город не указан</string>
+
+    <string name="profile_settings">Настройки профиля</string>
+    <string name="profile_open_settings_error">Не удалось открыть настройки профиля.</string>
+    <string name="profile_open_edit_error">Не удалось открыть экран редактирования.</string>
+    <string name="profile_change_avatar_stub">Загрузка/смена фото будет доступна позже.</string>
+
+    <!-- Редактирование полей профиля -->
+    <string name="profile_edit_close">Закрыть</string>
+    <string name="profile_edit_save">Сохранить</string>
+    <string name="profile_edit_default_title">Редактирование</string>
+    <string name="profile_edit_default_hint">Введите значение</string>
+    <string name="profile_edit_save_stub">Изменения сохранены локально (заглушка).</string>
+
+    <string name="profile_edit_name">Редактировать имя</string>
+    <string name="profile_edit_age">Редактировать возраст</string>
+    <string name="profile_edit_about">Редактировать описание</string>
+    <string name="profile_edit_location">Редактировать местоположение</string>
+
+    <string name="profile_edit_name_title">Имя</string>
+    <string name="profile_edit_name_hint">Введите ваше имя</string>
+    <string name="profile_edit_name_error_empty">Имя не может быть пустым.</string>
+
+    <string name="profile_edit_age_title">Возраст</string>
+    <string name="profile_edit_age_hint">Введите ваш возраст</string>
+    <string name="profile_edit_age_error_empty">Укажите возраст.</string>
+    <string name="profile_edit_age_error_range">Возраст должен быть от 0 до 120.</string>
+    <string name="profile_edit_age_error_format">Введите корректное число.</string>
+
+    <string name="profile_edit_about_title">О себе</string>
+    <string name="profile_edit_about_hint">Напишите пару слов о себе.</string>
+
+    <string name="profile_edit_location_title">Местоположение</string>
+    <string name="profile_edit_location_hint">Например, Амстердам</string>
+
+    <!-- Настройки профиля -->
+    <string name="profile_settings_title">Настройки профиля</string>
+    <string name="profile_settings_back">Назад</string>
+
+    <string name="profile_settings_section_account">Аккаунт</string>
+    <string name="profile_settings_section_privacy">Приватность</string>
+    <string name="profile_settings_section_legal">Документы</string>
+
+    <string name="profile_settings_change_phone">Сменить номер телефона</string>
+    <string name="profile_settings_change_email">Сменить e-mail</string>
+    <string name="profile_settings_change_password">Сменить пароль</string>
+    <string name="profile_settings_verify_account">Подтверждение аккаунта</string>
+    <string name="profile_settings_biometric_login">Вход по биометрии</string>
+
+    <string name="profile_settings_hide_profile">Скрывать профиль</string>
+    <string name="profile_settings_hide_photos">Скрывать фото</string>
+
+    <string name="profile_settings_user_agreement">Пользовательское соглашение</string>
+    <string name="profile_settings_privacy_policy">Политика конфиденциальности</string>
+
+    <string name="profile_settings_change_phone_stub">Экран смены номера пока не реализован.</string>
+    <string name="profile_settings_change_email_stub">Экран смены e-mail пока не реализован.</string>
+    <string name="profile_settings_change_password_stub">Экран смены пароля пока не реализован.</string>
+    <string name="profile_settings_verify_account_stub">Процесс подтверждения аккаунта пока не реализован.</string>
+    <string name="profile_settings_user_agreement_stub">Здесь будет показано пользовательское соглашение.</string>
+    <string name="profile_settings_privacy_policy_stub">Здесь будет показана политика конфиденциальности.</string>
+
+    <!-- Аккаунт: подзаголовки -->
+    <string name="profile_settings_change_phone_subtitle">Номер телефона для входа и связи</string>
+    <string name="profile_settings_change_email_subtitle">Почта для уведомлений и восстановления</string>
+    <string name="profile_settings_change_password_subtitle">Изменить пароль для входа</string>
+    <string name="profile_settings_verify_account_subtitle">Подтвердить почту или номер для повышенной защиты</string>
+
+    <string name="profile_settings_biometric_login_subtitle">Быстрый вход по отпечатку или лицу</string>
+
+    <!-- Приватность: строки для экранa -->
+    <string name="profile_settings_hide_profile_subtitle">Управляйте тем, кому показывается ваш профиль</string>
+    <string name="profile_settings_hide_photos_subtitle">Контролируйте, кто видит ваши фото</string>
+
+    <!-- Приватность: значения и bottom sheet -->
+    <string name="profile_settings_privacy_visibility_everyone">Виден всем</string>
+    <string name="profile_settings_privacy_visibility_matches_only">Только совпадения</string>
+    <string name="profile_settings_privacy_visibility_nobody">Никому</string>
+
+    <string name="profile_settings_privacy_sheet_title_default">Приватность</string>
+    <string name="profile_settings_privacy_sheet_description_default">Выберите, кто может видеть эту информацию.</string>
+    <string name="profile_settings_privacy_sheet_visibility_label">Кто может видеть</string>
+
+    <string name="profile_settings_privacy_profile_title">Кто видит профиль</string>
+    <string name="profile_settings_privacy_profile_description">Настройте видимость вашего профиля для других пользователей.</string>
+
+    <string name="profile_settings_privacy_photos_title">Кто видит фото</string>
+    <string name="profile_settings_privacy_photos_description">Настройте, кому показываются ваши фотографии.</string>
+
+    <string name="profile_settings_privacy_cancel">Отмена</string>
+    <string name="profile_settings_privacy_apply">Сохранить</string>
+
+    <!-- Документы: подзаголовки -->
+    <string name="profile_settings_user_agreement_subtitle">Условия использования сервиса</string>
+    <string name="profile_settings_privacy_policy_subtitle">Как мы обрабатываем и храним ваши данные</string>
+
+
+    <!-- Аватар: действия и состояния -->
+    <string name="profile_avatar_actions_title">Фото профиля</string>
+    <string name="profile_avatar_actions_subtitle">Выберите, что сделать с фотографией.</string>
+
+    <string name="profile_avatar_action_take_photo">Сделать фото</string>
+    <string name="profile_avatar_action_choose_gallery">Выбрать из галереи</string>
+    <string name="profile_avatar_action_remove">Удалить фото</string>
+
+    <string name="profile_camera_not_available">Камера недоступна на этом устройстве.</string>
+    <string name="profile_camera_permission_denied">Доступ к камере отклонён.</string>
+    <string name="profile_camera_create_file_error">Не удалось подготовить файл для фото.</string>
+    <string name="profile_avatar_removed">Фото профиля удалено.</string>
+    <string name="profile_avatar_crop_failed">Не удалось обработать фото.</string>
+
 </resources>

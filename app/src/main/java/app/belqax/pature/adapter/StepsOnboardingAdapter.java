@@ -16,12 +16,12 @@ import app.belqax.pature.view.BirthdayVH;
 import app.belqax.pature.view.NameVH;
 import app.belqax.pature.view.PurposeVH;
 
-public class StepsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class StepsOnboardingAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final List<Step> steps;
     private final StepActionListener listener;
 
-    public StepsAdapter(List<Step> steps, StepActionListener listener) {
+    public StepsOnboardingAdapter(List<Step> steps, StepActionListener listener) {
         this.steps = steps;
         this.listener = listener;
     }

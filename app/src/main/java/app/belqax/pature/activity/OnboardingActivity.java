@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import app.belqax.pature.R;
-import app.belqax.pature.adapter.StepsAdapter;
+import app.belqax.pature.adapter.StepsOnboardingAdapter;
 import app.belqax.pature.helper.SmoothScrollerHelper;
 import app.belqax.pature.infc.StepActionListener;
 import app.belqax.pature.model.Step;
@@ -25,7 +25,7 @@ public class OnboardingActivity extends AppCompatActivity implements StepActionL
     private ProgressBar progressBar;
     private ImageView backButton;
 
-    private StepsAdapter adapter;
+    private StepsOnboardingAdapter adapter;
     private List<Step> steps;
 
     private int currentStep = 0;
@@ -58,7 +58,7 @@ public class OnboardingActivity extends AppCompatActivity implements StepActionL
     }
 
     private void setupRecycler() {
-        adapter = new StepsAdapter(steps, this);
+        adapter = new StepsOnboardingAdapter(steps, this);
         stepsList.setLayoutManager(
                 new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false)
         );

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/eventFiltersTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/events_filter_title"
+            android:textSize="18sp"
+            android:fontFamily="@font/nunitoblack"
+            android:textColor="?attr/colorOnSurface"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/onlyUnreadEventsCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/event_filter_only_unread"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/event_filter_type"
+            android:textColor="?attr/colorOnSurfaceVariant"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/eventTypeChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEventTypeAll"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_filter_type_all"
+                android:checked="true"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEventTypeNewContacts"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_filter_type_new_contacts"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEventTypeMessages"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_filter_type_messages"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEventTypeUpdates"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_filter_type_updates"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEventTypeReminders"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/event_filter_type_reminders"/>
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/resetEventFiltersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_reset"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/applyEventFiltersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_apply"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Верхняя панель -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileSettingsHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/profileSettingsBackButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_round_imagebutton_selector"
+            android:contentDescription="@string/profile_settings_back"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?colorOnSurface" />
+
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/profileSettingsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoblack"
+            android:text="@string/profile_settings_title"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/profileSettingsScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/profileSettingsHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/profileSettingsContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Секция "Аккаунт" -->
+            <TextView
+                android:id="@+id/profileSettingsAccountSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:paddingBottom="4dp"
+                android:fontFamily="@font/nunitoblack"
+                android:paddingHorizontal="4dp"
+                android:text="@string/profile_settings_section_account"
+                android:textSize="13sp"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileSettingsAccountCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsChangePhoneRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+
+                            android:text="@string/profile_settings_change_phone"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunitobold"
+
+                            android:text="@string/profile_settings_change_phone_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsChangeEmailRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+
+                            android:text="@string/profile_settings_change_email"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="@string/profile_settings_change_email_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsChangePasswordRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+                            android:text="@string/profile_settings_change_password"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="@string/profile_settings_change_password_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsVerifyAccountRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+                            android:text="@string/profile_settings_verify_account"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="@string/profile_settings_verify_account_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunitoblack"
+                                android:text="@string/profile_settings_biometric_login"
+                                android:textSize="14sp"
+                                android:textColor="?attr/colorOnSurface" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="@font/nunitobold"
+                                android:text="@string/profile_settings_biometric_login_subtitle"
+                                android:textSize="12sp"
+                                android:textColor="?attr/colorOnSurfaceVariant" />
+                        </LinearLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/profileSettingsBiometricSwitch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Секция "Приватность" -->
+            <TextView
+                android:id="@+id/profileSettingsPrivacySectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitoblack"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:paddingHorizontal="4dp"
+                android:text="@string/profile_settings_section_privacy"
+                android:textSize="13sp"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileSettingsPrivacyCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Видимость профиля -->
+                    <LinearLayout
+                        android:id="@+id/profileSettingsHideProfileRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunitoblack"
+                                android:layout_weight="1"
+                                android:text="@string/profile_settings_hide_profile"
+                                android:textSize="14sp"
+                                android:textColor="?attr/colorOnSurface" />
+
+                            <TextView
+                                android:id="@+id/profileSettingsHideProfileValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunitoblack"
+                                android:text="@string/profile_settings_privacy_visibility_everyone"
+                                android:textSize="13sp"
+                                android:textColor="?attr/colorPrimary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunitobold"
+                            android:text="@string/profile_settings_hide_profile_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <!-- Видимость фото -->
+                    <LinearLayout
+                        android:id="@+id/profileSettingsHidePhotosRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunitoblack"
+                                android:layout_weight="1"
+                                android:text="@string/profile_settings_hide_photos"
+                                android:textSize="14sp"
+                                android:textColor="?attr/colorOnSurface" />
+
+                            <TextView
+                                android:id="@+id/profileSettingsHidePhotosValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunitoblack"
+                                android:text="@string/profile_settings_privacy_visibility_matches_only"
+                                android:textSize="13sp"
+                                android:textColor="?attr/colorPrimary" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitobold"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/profile_settings_hide_photos_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Секция "Документы" -->
+            <TextView
+                android:id="@+id/profileSettingsLegalSectionTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitoblack"
+                android:paddingTop="16dp"
+                android:paddingBottom="4dp"
+                android:paddingHorizontal="4dp"
+                android:text="@string/profile_settings_section_legal"
+                android:textSize="13sp"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/profileSettingsLegalCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:cardCornerRadius="16dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsUserAgreementRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+                            android:text="@string/profile_settings_user_agreement"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitobold"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/profile_settings_user_agreement_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/profileSettingsPrivacyPolicyRow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chat_item_ripple"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="12dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitoblack"
+                            android:text="@string/profile_settings_privacy_policy"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunitobold"
+                            android:layout_marginTop="2dp"
+                            android:text="@string/profile_settings_privacy_policy_subtitle"
+                            android:textSize="12sp"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

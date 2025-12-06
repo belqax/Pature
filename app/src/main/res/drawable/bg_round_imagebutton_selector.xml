@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Нажатое состояние -->
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <solid android:color="?colorOutlineVariant"/>
+        </shape>
+    </item>
+
+    <!-- Отключено -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="16dp"/>
+            <solid android:color="?colorOutline"/>
+        </shape>
+    </item>
+
+    <!-- Нормальное -->
+    <item android:drawable="@drawable/bg_round_imagebutton"/>
+</selector>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="0dp"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="10dp"
+    card_view:cardUseCompatPadding="true"
+    android:clipToOutline="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Фото на весь экран -->
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/app_name"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Зелёное затенение при свайпе вправо -->
+        <View
+            android:id="@+id/swipeLikeBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#8032CD32"
+            android:alpha="0"
+            app:layout_constraintTop_toTopOf="@id/cardImage"
+            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage" />
+
+        <!-- Красное затенение при свайпе влево -->
+        <View
+            android:id="@+id/swipeDislikeBg"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#80FF4444"
+            android:alpha="0"
+            app:layout_constraintTop_toTopOf="@id/cardImage"
+            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage" />
+
+        <!-- Нижний градиент -->
+        <ImageView
+            android:id="@+id/bottomGradient"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bottom_light_gradient"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage"
+            app:layout_constraintBottom_toBottomOf="@id/cardImage" />
+
+        <!-- Имя -->
+        <TextView
+            android:id="@+id/cardName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Снежа"
+            android:textSize="26sp"
+            android:fontFamily="@font/nunitoblack"
+            android:textColor="?colorOnSurface"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage"
+            app:layout_constraintBottom_toTopOf="@id/cardDescription" />
+
+        <!-- Описание -->
+        <TextView
+            android:id="@+id/cardDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="24dp"
+            android:text="Ищем жениха"
+            android:textSize="18sp"
+            android:fontFamily="@font/nunitoblack"
+            android:textColor="?colorOnSurfaceVariant"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage"
+            app:layout_constraintBottom_toTopOf="@id/cardButtonsGroup" />
+
+        <!-- Нижние кнопки -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardButtonsGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp"
+            android:gravity="center"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintBottom_toBottomOf="@id/cardImage"
+            app:layout_constraintStart_toStartOf="@id/cardImage"
+            app:layout_constraintEnd_toEndOf="@id/cardImage">
+
+            <ImageButton
+                android:id="@+id/cardDislike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round_imagebutton_selector"
+                android:padding="15dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_dislike"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?colorOnSecondaryContainer" />
+
+            <ImageButton
+                android:id="@+id/cardContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round_imagebutton_selector"
+                android:padding="20dp"
+                android:src="@drawable/ic_message"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardLike"
+                app:layout_constraintStart_toEndOf="@+id/cardDislike"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?colorOnSecondaryContainer" />
+
+            <ImageButton
+                android:id="@+id/cardLike"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_round_imagebutton_selector"
+                android:padding="15dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_like"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="?colorOnSecondaryContainer" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Иконка лайка сверху слева -->
+        <ImageView
+            android:id="@+id/swipeLikeOverlay"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="24dp"
+            android:alpha="0"
+            android:src="@drawable/ic_like"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="?colorOnSecondaryContainer" />
+
+        <!-- Иконка дизлайка сверху справа -->
+        <ImageView
+            android:id="@+id/swipeDislikeOverlay"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_margin="24dp"
+            android:alpha="0"
+            android:src="@drawable/ic_dislike"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="?colorOnSecondaryContainer" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

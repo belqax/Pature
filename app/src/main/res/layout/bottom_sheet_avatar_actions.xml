@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/avatarActionsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/profile_avatar_actions_title"
+        android:textSize="18sp"
+        android:fontFamily="@font/nunitoblack"
+        android:textColor="?attr/colorOnSurface" />
+
+    <TextView
+        android:id="@+id/avatarActionsSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/profile_avatar_actions_subtitle"
+        android:textSize="13sp"
+        android:fontFamily="@font/nunitobold"
+        android:textColor="?attr/colorOnSurfaceVariant" />
+
+    <LinearLayout
+        android:id="@+id/avatarTakePhotoRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_chat_item_ripple"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_camera"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/profile_avatar_action_take_photo"
+            android:textSize="14sp"
+            android:fontFamily="@font/nunitobold"
+            android:textColor="?attr/colorOnSurface" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/avatarPickFromGalleryRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_chat_item_ripple"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_photo"
+            app:tint="?attr/colorOnSurface" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/profile_avatar_action_choose_gallery"
+            android:textSize="14sp"
+            android:fontFamily="@font/nunitobold"
+            android:textColor="?attr/colorOnSurface" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/avatarRemovePhotoRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_chat_item_ripple"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_delete"
+            app:tint="?attr/colorError" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:text="@string/profile_avatar_action_remove"
+            android:textSize="14sp"
+            android:fontFamily="@font/nunitobold"
+            android:textColor="?attr/colorError" />
+    </LinearLayout>
+
+</LinearLayout>

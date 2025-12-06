@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="8dp">
+
+    <!-- Верхняя панель: заголовок и кнопка настроек -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profileHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/profileTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoblack"
+            android:text="@string/profile_title"
+            android:textAlignment="center"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageButton
+            android:id="@+id/profileSettingsButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_round_imagebutton_selector"
+            android:contentDescription="@string/profile_settings"
+            android:padding="8dp"
+            android:src="@drawable/ic_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?colorOnSurface" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Контент -->
+    <ScrollView
+        android:id="@+id/profileScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toBottomOf="@id/profileHeader"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:id="@+id/profileContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="24dp">
+
+            <!-- Аватар -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/profileAvatarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingBottom="8dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="200dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+
+                        android:id="@+id/profileAvatarImage"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:background="@drawable/bg_round_imagebutton_selector"
+                        android:contentDescription="@string/profile_avatar_content_description"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_cat" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Блок: Имя -->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/profileNameText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/profile_name_placeholder"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/nunitoblack"
+                    android:textColor="?attr/colorOnSurface"
+                    android:maxLines="1"
+                    android:ellipsize="end" />
+
+                <ImageButton
+                    android:id="@+id/profileEditNameButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_round_imagebutton_transparent"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="@string/profile_edit_name"
+                    app:tint="?attr/colorOnSurface" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="?attr/colorOutline" />
+
+            <!-- Блок: Возраст -->
+            <TextView
+                android:id="@+id/profileAgeLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/profile_age_label"
+                android:textSize="13sp"
+                android:fontFamily="@font/nunitoblack"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/profileAgeText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_weight="1"
+                    android:text="@string/profile_age_placeholder"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <ImageButton
+                    android:id="@+id/profileEditAgeButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_round_imagebutton_transparent"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="@string/profile_edit_age"
+                    app:tint="?attr/colorOnSurface" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="?attr/colorOutline" />
+
+            <!-- Блок: О себе -->
+            <TextView
+                android:id="@+id/profileAboutLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunitoblack"
+                android:layout_marginTop="12dp"
+                android:text="@string/profile_about_label"
+                android:textSize="13sp"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/profileAboutText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_weight="1"
+                    android:text="@string/profile_about_placeholder"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:maxLines="4"
+                    android:ellipsize="end" />
+
+                <ImageButton
+                    android:id="@+id/profileEditAboutButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_round_imagebutton_transparent"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="@string/profile_edit_about"
+                    app:tint="?attr/colorOnSurface" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="?attr/colorOutline" />
+
+            <!-- Блок: Местоположение -->
+            <TextView
+                android:id="@+id/profileLocationLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/profile_location_label"
+                android:textSize="13sp"
+                android:fontFamily="@font/nunitoblack"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/profileLocationText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunitobold"
+                    android:layout_weight="1"
+                    android:text="@string/profile_location_placeholder"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:maxLines="2"
+                    android:ellipsize="end" />
+
+                <ImageButton
+                    android:id="@+id/profileEditLocationButton"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@drawable/bg_round_imagebutton_transparent"
+                    android:padding="6dp"
+                    android:src="@drawable/ic_edit"
+                    android:contentDescription="@string/profile_edit_location"
+                    app:tint="?attr/colorOnSurface" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

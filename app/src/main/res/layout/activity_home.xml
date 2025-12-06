@@ -14,30 +14,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- Нижняя навигация -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/floatingNavBar"
-        android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:background="?colorSurface"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="26dp"
-        app:cardUseCompatPadding="true"
-        android:translationZ="10dp"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:itemActiveIndicatorStyle="@style/BottomNavActiveIndicator.None"
+        app:itemIconTint="@color/pature_nav_selector"
+        app:itemTextColor="@color/pature_nav_selector"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNav"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            app:itemIconTint="@color/pature_nav_selector"
-            app:itemTextColor="@color/pature_nav_selector"
-            app:labelVisibilityMode="unlabeled"
-            app:menu="@menu/menu_bottom_nav"/>
-
-    </androidx.cardview.widget.CardView>
+        app:menu="@menu/menu_bottom_nav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

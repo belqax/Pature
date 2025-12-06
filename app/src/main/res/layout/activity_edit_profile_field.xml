@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Верхняя панель -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/editFieldHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingVertical="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <ImageButton
+            android:id="@+id/editFieldCloseButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_round_imagebutton_selector"
+            android:contentDescription="@string/profile_edit_close"
+            android:padding="8dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?colorOnSurface" />
+
+        <TextView
+            android:textAlignment="center"
+            android:id="@+id/editFieldTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunitoblack"
+            android:text="@string/profile_edit_default_title"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Карточка с полем ввода -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/editFieldCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="16dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/editFieldHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/editFieldInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_textfield_rounded"
+            android:padding="12dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textColorHint="?attr/colorOnSurfaceVariant"
+            android:textSize="16sp"
+            android:gravity="top|start"
+            android:minLines="1"
+            android:maxLines="6"
+            android:scrollbars="vertical" />
+    </androidx.cardview.widget.CardView>
+
+    <!-- Кнопка сохранения -->
+    <Button
+        android:id="@+id/editFieldSaveButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/profile_edit_save"
+        android:textAllCaps="false"
+        android:fontFamily="@font/nunitoblack"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

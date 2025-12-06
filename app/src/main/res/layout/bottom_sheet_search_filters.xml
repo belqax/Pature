@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/filtersTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search_filters"
+            android:textSize="18sp"
+            android:fontFamily="@font/nunitoblack"
+            android:textColor="?attr/colorOnSurface" />
+
+        <!-- Тип животного -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/search_filter_species"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/speciesChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:singleLine="true"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSpeciesAny"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_any"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSpeciesDog"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_dog" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSpeciesCat"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_cat" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Пол -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/search_filter_gender"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/genderChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            app:singleLine="true"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGenderAny"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_any"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGenderMale"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_male" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipGenderFemale"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_female" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Возраст -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/search_filter_age"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <com.google.android.material.slider.RangeSlider
+            android:id="@+id/ageRangeSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:valueFrom="0"
+            android:valueTo="20"
+            android:stepSize="1"
+            app:values="@array/default_age_range" />
+
+        <TextView
+            android:id="@+id/ageRangeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="0 – 20"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <!-- Прочие фильтры -->
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/withPhotoCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/search_filter_with_photo" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/favoritesOnlyCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search_filter_favorites_only" />
+
+        <!-- Кнопки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/resetFiltersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_reset"
+                style="@style/Widget.MaterialComponents.Button.TextButton" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/applyFiltersButton"
+                style="@style/Widget.Material3.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_apply"
+                app:cornerRadius="16dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

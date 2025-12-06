@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/chatFiltersTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/chat_filters_title"
+            android:textSize="18sp"
+            android:fontFamily="@font/nunitoblack"
+            android:textColor="?attr/colorOnSurface"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/onlyUnreadCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/chat_filter_only_unread"/>
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/onlyFavoritesCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/chat_filter_only_favorites"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/chat_filter_sort"
+            android:textColor="?attr/colorOnSurfaceVariant"/>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/sortChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSortNewest"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_filter_sort_newest"
+                android:checked="true"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSortOldest"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_filter_sort_oldest"/>
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSortByName"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_filter_sort_name"/>
+        </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/resetChatFiltersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_reset"
+                style="@style/Widget.MaterialComponents.Button.TextButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/applyChatFiltersButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_filter_apply"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

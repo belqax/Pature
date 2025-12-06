@@ -3,19 +3,23 @@
 
     <item
         android:id="@+id/nav_home"
-        android:title="Главная"
-        android:icon="@drawable/ic_info"/>
+        android:title="Карточки"
+        android:icon="@drawable/ic_device"/>
     <item
         android:id="@+id/nav_search"
         android:title="Поиск"
-        android:icon="@drawable/ic_info"/>
+        android:icon="@drawable/ic_search"/>
     <item
-        android:id="@+id/nav_pets"
-        android:title="Питомцы"
-        android:icon="@drawable/ic_info"/>
+        android:id="@+id/nav_event"
+        android:title="События"
+        android:icon="@drawable/ic_event"/>
+    <item
+        android:id="@+id/nav_message"
+        android:title="Сообщения"
+        android:icon="@drawable/ic_message"/>
 
     <item
         android:id="@+id/nav_profile"
         android:title="Профиль"
-        android:icon="@drawable/ic_info"/>
+        android:icon="@drawable/ic_cat"/>
 </menu>
