@@ -10,6 +10,7 @@ import app.belqax.pature.data.repository.AuthRepository.SimpleDetailResponseDto;
 import app.belqax.pature.data.repository.AuthRepository.TokenPairDto;
 import app.belqax.pature.data.repository.AuthRepository.UserLoginRequestDto;
 import app.belqax.pature.data.repository.AuthRepository.UserRefreshRequestDto;
+import app.belqax.pature.data.repository.AuthRepository.PasswordChangeRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -33,7 +34,8 @@ public interface AuthApi {
 
     @POST("auth/password/reset")
     Call<SimpleDetailResponseDto> passwordReset(@Body PasswordResetRequestDto body);
-
+    @POST("auth/password/change")
+    Call<SimpleDetailResponseDto> changePassword(@Body PasswordChangeRequest body);
     @POST("auth/logout")
     Call<SimpleDetailResponseDto> logout(@Body LogoutRequestDto body);
 

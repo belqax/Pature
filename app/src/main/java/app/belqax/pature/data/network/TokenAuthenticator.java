@@ -1,162 +1,193 @@
 package app.belqax.pature.data.network;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.util.Objects;
+import java.util.concurrent.locks.ReentrantLock;
 
 import app.belqax.pature.data.storage.AuthStorage;
 import okhttp3.Authenticator;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Route;
 import okhttp3.Response;
+import okhttp3.Route;
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
 
-/**
- * Authenticator:
- * - при 401 один раз пытается обновить access_token через /auth/refresh;
- * - если refresh недействителен (400/401 или нет токенов в ответе) — чистит AuthStorage;
- * - если проблема только с сетью или 5xx — не чистит сессию, просто не обновляет токен.
- */
-public class TokenAuthenticator implements Authenticator {
+public final class TokenAuthenticator implements Authenticator {
 
-    private static final MediaType JSON_MEDIA_TYPE =
-            MediaType.get("application/json; charset=utf-8");
+    private static final String TAG = "TokenAuthenticator";
 
-    private static final long NETWORK_TIMEOUT_SECONDS = 30L;
+    private static final String AUTH_HEADER = "Authorization";
+    private static final String BEARER_PREFIX = "Bearer ";
 
-    private final String baseUrl;
+    private static final int MAX_AUTH_RETRIES = 2;
+
     private final AuthStorage authStorage;
-    private final OkHttpClient refreshClient;
+    private final RefreshApi refreshApi;
 
-    public TokenAuthenticator(String baseUrl, AuthStorage authStorage) {
-        this.baseUrl = baseUrl;
-        this.authStorage = authStorage;
-        this.refreshClient = new OkHttpClient.Builder()
-                .connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-                .readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
-                .writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+    private final ReentrantLock refreshLock = new ReentrantLock(true);
+
+    public TokenAuthenticator(
+            @NonNull AuthStorage authStorage,
+            @NonNull String baseUrl
+    ) {
+        this.authStorage = Objects.requireNonNull(authStorage, "authStorage");
+
+        // Важно: refresh-клиент должен быть "чистым": без этого Authenticator, иначе можно закольцеваться.
+        OkHttpClient refreshClient = new OkHttpClient.Builder()
                 .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Objects.requireNonNull(baseUrl, "baseUrl"))
+                .client(refreshClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        this.refreshApi = retrofit.create(RefreshApi.class);
     }
 
     @Nullable
     @Override
-    public Request authenticate(@Nullable Route route, Response response) throws IOException {
-        // Защищает от зацикливания одного и того же запроса.
-        if (responseCount(response) >= 2) {
+    public Request authenticate(@Nullable Route route, @NonNull Response response) throws IOException {
+        if (responseCount(response) >= MAX_AUTH_RETRIES) {
+            Log.w(TAG, "authenticate: too many retries, giving up. url=" + response.request().url());
             return null;
         }
 
-        String path = response.request().url().encodedPath();
-        if (path != null) {
-            // Не пытается рефрешить сами auth-эндпоинты.
-            if (path.startsWith("/auth/login")
-                    || path.startsWith("/auth/register")
-                    || path.startsWith("/auth/refresh")
-                    || path.startsWith("/auth/password")
-                    || path.startsWith("/auth/email")) {
-                return null;
-            }
-        }
+        String requestAccess = extractBearerToken(response.request());
+        String currentAccess = authStorage.getAccessToken();
 
-        String refreshToken = authStorage.getRefreshToken();
-        String login = authStorage.getLogin();
-
-        // Если нет данных для refresh — выходим из сессии и не пытаемся обновляться.
-        if (refreshToken == null || refreshToken.isEmpty()
-                || login == null || login.isEmpty()) {
-            authStorage.clearAll();
-            return null;
-        }
-
-        // Собирает JSON для /auth/refresh.
-        JsonObject json = new JsonObject();
-        json.addProperty("refresh_token", refreshToken);
-        json.addProperty("login", login);
-        String bodyString = json.toString();
-
-        RequestBody body = RequestBody.create(bodyString, JSON_MEDIA_TYPE);
-
-        Request refreshRequest = new Request.Builder()
-                .url(baseUrl + "auth/refresh")
-                .post(body)
-                .build();
-
-        Response refreshResponse = null;
-        try {
-            refreshResponse = refreshClient.newCall(refreshRequest).execute();
-
-            int code = refreshResponse.code();
-
-            // Если /auth/refresh вернул 400/401 — refresh недействителен, чистит сессию.
-            if ((code == 400 || code == 401)) {
-                authStorage.clearAll();
-                return null;
-            }
-
-            // Любой неуспешный код, кроме 400/401: не удалось обновить,
-            // но это может быть временная проблема сервера, сессию не трогает.
-            if (!refreshResponse.isSuccessful() || refreshResponse.body() == null) {
-                return null;
-            }
-
-            String raw = refreshResponse.body().string();
-            JsonElement element = JsonParser.parseString(raw);
-            if (!element.isJsonObject()) {
-                // Ответ не похож на валидный JSON с токенами, считаем refresh сломанным.
-                authStorage.clearAll();
-                return null;
-            }
-
-            JsonObject root = element.getAsJsonObject();
-            JsonElement accessEl = root.get("access_token");
-            JsonElement refreshEl = root.get("refresh_token");
-            if (accessEl == null || refreshEl == null
-                    || accessEl.isJsonNull() || refreshEl.isJsonNull()) {
-                // Нет токенов в ответе — refresh недействителен.
-                authStorage.clearAll();
-                return null;
-            }
-
-            String newAccess = accessEl.getAsString();
-            String newRefresh = refreshEl.getAsString();
-
-            if (newAccess == null || newAccess.isEmpty()
-                    || newRefresh == null || newRefresh.isEmpty()) {
-                authStorage.clearAll();
-                return null;
-            }
-
-            // Успешно обновляет токены.
-            authStorage.saveTokens(newAccess, newRefresh);
-
-            // Пересобирает исходный запрос с новым access_token.
+        // 1) Если другой поток уже обновил access, просто повторяем запрос с актуальным токеном.
+        if (currentAccess != null
+                && !currentAccess.trim().isEmpty()
+                && requestAccess != null
+                && !requestAccess.equals(currentAccess)) {
+            Log.i(TAG, "authenticate: token already refreshed by another call, retrying with current token. url="
+                    + response.request().url());
             return response.request().newBuilder()
-                    .header("Authorization", "Bearer " + newAccess)
+                    .header(AUTH_HEADER, BEARER_PREFIX + currentAccess)
                     .build();
+        }
 
-        } catch (Exception e) {
-            // Любая сетевая/парсинг-ошибка при обращении к /auth/refresh.
-            // Сессию НЕ чистит: просто не обновляет токены.
-            return null;
-        } finally {
-            if (refreshResponse != null && refreshResponse.body() != null) {
-                refreshResponse.close();
+        // 2) Сериализация refresh: только один поток делает refresh, остальные ждут.
+        refreshLock.lock();
+        try {
+            // Повторная проверка после ожидания lock: вдруг пока ждали, токен обновился.
+            String accessAfterWait = authStorage.getAccessToken();
+            if (accessAfterWait != null
+                    && !accessAfterWait.trim().isEmpty()
+                    && requestAccess != null
+                    && !requestAccess.equals(accessAfterWait)) {
+                Log.i(TAG, "authenticate: token refreshed while waiting lock, retrying. url=" + response.request().url());
+                return response.request().newBuilder()
+                        .header(AUTH_HEADER, BEARER_PREFIX + accessAfterWait)
+                        .build();
             }
+
+            String refreshToken = authStorage.getRefreshToken();
+            if (refreshToken == null || refreshToken.trim().isEmpty()) {
+                Log.e(TAG, "authenticate: no refresh token, cannot refresh. url=" + response.request().url());
+                return null;
+            }
+
+            Log.i(TAG, "authenticate: refreshing tokens, url=" + response.request().url());
+
+            RefreshRequest body = new RefreshRequest(refreshToken);
+            Call<TokenPair> call = refreshApi.refresh(body);
+
+            retrofit2.Response<TokenPair> refreshResp;
+            try {
+                refreshResp = call.execute();
+            } catch (IOException io) {
+                // Сеть/таймауты не должны чистить сессию.
+                Log.w(TAG, "authenticate: refresh network error: " + io);
+                return null;
+            } catch (Exception ex) {
+                Log.e(TAG, "authenticate: refresh unexpected error: " + ex);
+                return null;
+            }
+
+            if (refreshResp.isSuccessful() && refreshResp.body() != null) {
+                TokenPair pair = refreshResp.body();
+                if (pair.accessToken == null || pair.accessToken.trim().isEmpty()) {
+                    Log.e(TAG, "authenticate: refresh success but access token empty");
+                    return null;
+                }
+
+                // Сохраняем и access, и refresh (если сервер ротирует refresh — это критично).
+                authStorage.saveTokens(pair.accessToken, pair.refreshToken);
+
+                Log.i(TAG, "authenticate: refresh success, retrying original request");
+
+                return response.request().newBuilder()
+                        .header(AUTH_HEADER, BEARER_PREFIX + pair.accessToken)
+                        .build();
+            }
+
+            // 401 на refresh означает недействительный refresh (или он уже был ротирован конкурентным запросом).
+            // Мы уже сделали двойную проверку "токен обновился ли другим потоком", так что здесь можно логаутить.
+            int code = refreshResp.code();
+            if (code == 401) {
+                Log.e(TAG, "authenticate: refresh rejected (code=401). Clearing session.");
+                authStorage.clearAll();
+                return null;
+            }
+
+            Log.e(TAG, "authenticate: refresh failed code=" + code);
+            return null;
+
+        } finally {
+            refreshLock.unlock();
         }
     }
 
-    private int responseCount(Response response) {
-        int count = 1;
-        while ((response = response.priorResponse()) != null) {
-            count++;
+    private static int responseCount(@NonNull Response response) {
+        int result = 1;
+        Response prior = response.priorResponse();
+        while (prior != null) {
+            result++;
+            prior = prior.priorResponse();
         }
-        return count;
+        return result;
+    }
+
+    @Nullable
+    private static String extractBearerToken(@NonNull Request request) {
+        String h = request.header(AUTH_HEADER);
+        if (h == null) {
+            return null;
+        }
+        if (!h.startsWith(BEARER_PREFIX)) {
+            return null;
+        }
+        return h.substring(BEARER_PREFIX.length()).trim();
+    }
+
+    // ===== Retrofit API =====
+
+    private interface RefreshApi {
+        @POST("auth/refresh")
+        Call<TokenPair> refresh(@Body RefreshRequest body);
+    }
+
+    private static final class RefreshRequest {
+        final String refresh_token;
+
+        RefreshRequest(@NonNull String refreshToken) {
+            this.refresh_token = refreshToken;
+        }
+    }
+
+    public static final class TokenPair {
+        public String accessToken;
+        public String refreshToken;
     }
 }

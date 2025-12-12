@@ -188,6 +188,33 @@
     <string name="profile_avatar_crop_failed">Не удалось обработать фото.</string>
     <string name="profile_avatar_remove_success">Фото профиля удалено.</string>
 
+    <string name="profile_settings_visibility_subtitle">Выберите, кто может видеть эту информацию</string>
+
+    <string name="profile_settings_visibility_everyone_title">Виден всем</string>
+    <string name="profile_settings_visibility_everyone_desc">Профиль будет доступен всем пользователям</string>
+
+    <string name="profile_settings_visibility_matches_title">Только совпадения</string>
+    <string name="profile_settings_visibility_matches_desc">Профиль будет виден только взаимным совпадениям</string>
+
+    <string name="profile_settings_visibility_none_title">Никому</string>
+    <string name="profile_settings_visibility_none_desc">Профиль будет скрыт от всех</string>
+    <string name="change_password_title">Сменить пароль</string>
+    <string name="change_password_subtitle">Введите текущий пароль и задайте новый</string>
+
+    <string name="change_password_old">Текущий пароль</string>
+    <string name="change_password_new">Новый пароль</string>
+    <string name="change_password_confirm">Повторите новый пароль</string>
+
+    <string name="change_password_cancel">Отмена</string>
+    <string name="change_password_save">Сохранить</string>
+    <string name="change_password_saving">Сохранение…</string>
+
+    <string name="change_password_success">Пароль изменён</string>
+
+    <string name="change_password_error_old_min">Минимум 8 символов</string>
+    <string name="change_password_error_new_min">Минимум 8 символов</string>
+    <string name="change_password_error_same">Новый пароль должен отличаться от старого</string>
+    <string name="change_password_error_confirm">Пароли не совпадают</string>
 
 
 </resources>

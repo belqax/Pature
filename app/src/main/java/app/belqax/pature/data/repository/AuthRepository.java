@@ -6,6 +6,8 @@ import androidx.annotation.Nullable;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 import app.belqax.pature.data.network.ApiClient;
 import app.belqax.pature.data.network.AuthApi;
@@ -255,6 +257,70 @@ public class AuthRepository {
                 callback.onError("Сетевая ошибка при смене пароля: " + safeMessage(t));
             }
         });
+    }
+
+
+    public void changePassword(@NonNull PasswordChangeRequest body,
+                               @NonNull final SimpleCallback callback) {
+        authApi.changePassword(body).enqueue(new Callback<SimpleDetailResponseDto>() {
+            @Override
+            public void onResponse(@NonNull Call<SimpleDetailResponseDto> call,
+                                   @NonNull Response<SimpleDetailResponseDto> response) {
+                if (!response.isSuccessful()) {
+                    String message = extractErrorMessage(response, "Ошибка при смене пароля: " + response.code());
+                    callback.onError(message);
+                    return;
+                }
+                authStorage.clearAll();
+                callback.onSuccess();
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SimpleDetailResponseDto> call,
+                                  @NonNull Throwable t) {
+                callback.onError("Сетевая ошибка при смене пароля: " + safeMessage(t));
+            }
+        });
+    }
+
+    public static final class PasswordChangeRequest {
+        @NonNull
+        @SerializedName("old_password")
+        @Expose
+        private final String old_password;
+
+        @NonNull
+        @SerializedName("new_password")
+        @Expose
+        private final String new_password;
+
+        public PasswordChangeRequest(@NonNull String oldPassword,
+                                     @NonNull String newPassword) {
+            this.old_password = oldPassword;
+            this.new_password = newPassword;
+        }
+
+        @NonNull
+        public String getOldPassword() {
+            return old_password;
+        }
+
+        @NonNull
+        public String getNewPassword() {
+            return new_password;
+        }
+    }
+
+    public static final class SimpleDetailResponse {
+        @Nullable
+        @SerializedName("detail")
+        @Expose
+        private String detail;
+
+        @Nullable
+        public String getDetail() {
+            return detail;
+        }
     }
 
     /**

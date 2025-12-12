@@ -37,6 +37,7 @@ import java.io.InputStream;
 
 import app.belqax.pature.R;
 import app.belqax.pature.activity.EditProfileFieldActivity;
+import app.belqax.pature.activity.ProfileSettingsActivity;
 import app.belqax.pature.data.repository.ProfileRepository;
 import app.belqax.pature.data.repository.ProfileRepository.MeResponse;
 import app.belqax.pature.data.repository.ProfileRepository.ProfileDto;
@@ -77,6 +78,7 @@ public class ProfileFragment extends Fragment {
     private ImageButton profileEditAgeButton;
     private ImageButton profileEditAboutButton;
     private ImageButton profileEditLocationButton;
+    private ImageButton settingsButton;
 
     private ProfileRepository profileRepository;
 
@@ -266,6 +268,7 @@ public class ProfileFragment extends Fragment {
         profileEditAgeButton = root.findViewById(R.id.profileEditAgeButton);
         profileEditAboutButton = root.findViewById(R.id.profileEditAboutButton);
         profileEditLocationButton = root.findViewById(R.id.profileEditLocationButton);
+        settingsButton = root.findViewById(R.id.profileSettingsButton);
     }
 
     private void setupClickListeners() {
@@ -308,6 +311,7 @@ public class ProfileFragment extends Fragment {
                     currentLocation
             );
         });
+        settingsButton.setOnClickListener(v -> openSettings());
 
         profileAvatarImage.setOnClickListener(v -> showAvatarActionsBottomSheet());
     }
@@ -318,6 +322,13 @@ public class ProfileFragment extends Fragment {
         intent.putExtra(EditProfileFieldActivity.EXTRA_FIELD_TYPE, fieldType);
         intent.putExtra(EditProfileFieldActivity.EXTRA_INITIAL_VALUE, currentValue);
         editFieldLauncher.launch(intent);
+    }
+    private void openSettings() {
+        if (getContext() == null) {
+            return;
+        }
+        Intent intent = new Intent(getContext(), ProfileSettingsActivity.class);
+        startActivity(intent);
     }
 
     private void showAvatarActionsBottomSheet() {
@@ -572,15 +583,6 @@ public class ProfileFragment extends Fragment {
 
     @Nullable
     private String readLocationForUi(@NonNull ProfileDto profile) {
-        String formatted = null;
-        try {
-            formatted = profile.getLocationFormatted();
-        } catch (Throwable ignored) {
-        }
-
-        if (!isNullOrBlank(formatted)) {
-            return formatted;
-        }
 
         String city = null;
         try {
@@ -941,6 +943,7 @@ public class ProfileFragment extends Fragment {
 
     private void handleUnauthorized() {
         Log.w(TAG, "handleUnauthorized: unauthorized user, should logout");
+
         // Здесь вызывается общий logout:
         // 1. authStorage.clear()
         // 2. profileRepository.clearProfile()

@@ -25,11 +25,12 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PATCH;
 import retrofit2.http.PUT;
 import retrofit2.http.Part;
 
 /**
- * Репозиторий для работы с /users/me, /users/me/profile, /users/me/avatar.
+ * Репозиторий для работы с /users/me, /users/me/profile, /users/me/avatar, /users/me/privacy.
  * Не знает о токенах и не создаёт Retrofit: использует готовый ApiClient.
  */
 public class ProfileRepository {
@@ -108,6 +109,60 @@ public class ProfileRepository {
             }
         });
     }
+
+    public void updatePrivacy(@NonNull UpdatePrivacyRequest body,
+                              @NonNull final ProfileCallback callback) {
+        Log.d(TAG, "updatePrivacy: sending PATCH /users/me/privacy request");
+        api.updatePrivacy(body).enqueue(new Callback<MeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MeResponse> call,
+                                   @NonNull Response<MeResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "updatePrivacy: success, HTTP " + response.code());
+                    MeResponse body = response.body();
+                    storage.saveProfile(body);
+                    callback.onSuccess(body);
+                } else {
+                    Log.w(TAG, "updatePrivacy: error, HTTP " + response.code());
+                    callback.onError(mapHttpError(response));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MeResponse> call, @NonNull Throwable t) {
+                Log.e(TAG, "updatePrivacy: failure", t);
+                callback.onError(mapNetworkError(t));
+            }
+        });
+    }
+
+    public void updateSettings(@NonNull UpdateSettingsRequest body,
+                               @NonNull final ProfileCallback callback) {
+        Log.d(TAG, "updateSettings: sending PATCH /users/me/settings request");
+        api.updateSettings(body).enqueue(new Callback<MeResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<MeResponse> call,
+                                   @NonNull Response<MeResponse> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    Log.d(TAG, "updateSettings: success, HTTP " + response.code());
+                    MeResponse body = response.body();
+                    storage.saveProfile(body);
+                    callback.onSuccess(body);
+                } else {
+                    Log.w(TAG, "updateSettings: error, HTTP " + response.code());
+                    callback.onError(mapHttpError(response));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<MeResponse> call,
+                                  @NonNull Throwable t) {
+                Log.e(TAG, "updateSettings: failure", t);
+                callback.onError(mapNetworkError(t));
+            }
+        });
+    }
+
 
     public void uploadAvatar(@NonNull MultipartBody.Part filePart,
                              @NonNull final ProfileCallback callback) {
@@ -303,6 +358,12 @@ public class ProfileRepository {
 
         @PUT("users/me/profile")
         Call<MeResponse> updateProfile(@Body UpdateProfileRequest body);
+
+        @PATCH("users/me/privacy")
+        Call<MeResponse> updatePrivacy(@Body UpdatePrivacyRequest body);
+
+        @PATCH("users/me/settings")
+        Call<MeResponse> updateSettings(@Body UpdateSettingsRequest body);
 
         @Multipart
         @POST("users/me/avatar")
@@ -649,6 +710,148 @@ public class ProfileRepository {
         }
     }
 
+    public static final class UpdatePrivacyRequest {
+
+        @Nullable
+        @SerializedName("profile_visibility")
+        @Expose
+        private String profile_visibility;
+
+        @Nullable
+        @SerializedName("photos_visibility")
+        @Expose
+        private String photos_visibility;
+
+        @Nullable
+        @SerializedName("online_status_visibility")
+        @Expose
+        private String online_status_visibility;
+
+        @Nullable
+        @SerializedName("last_seen_precision")
+        @Expose
+        private String last_seen_precision;
+
+        @Nullable
+        @SerializedName("show_age")
+        @Expose
+        private Boolean show_age;
+
+        @Nullable
+        @SerializedName("show_distance")
+        @Expose
+        private Boolean show_distance;
+
+        public UpdatePrivacyRequest(
+                @Nullable String profileVisibility,
+                @Nullable String photosVisibility,
+                @Nullable String onlineStatusVisibility,
+                @Nullable String lastSeenPrecision,
+                @Nullable Boolean showAge,
+                @Nullable Boolean showDistance
+        ) {
+            this.profile_visibility = profileVisibility;
+            this.photos_visibility = photosVisibility;
+            this.online_status_visibility = onlineStatusVisibility;
+            this.last_seen_precision = lastSeenPrecision;
+            this.show_age = showAge;
+            this.show_distance = showDistance;
+        }
+
+        @Nullable
+        public String getProfileVisibility() {
+            return profile_visibility;
+        }
+
+        @Nullable
+        public String getPhotosVisibility() {
+            return photos_visibility;
+        }
+
+        @Nullable
+        public String getOnlineStatusVisibility() {
+            return online_status_visibility;
+        }
+
+        @Nullable
+        public String getLastSeenPrecision() {
+            return last_seen_precision;
+        }
+
+        @Nullable
+        public Boolean getShowAge() {
+            return show_age;
+        }
+
+        @Nullable
+        public Boolean getShowDistance() {
+            return show_distance;
+        }
+    }
+    public static final class UpdateSettingsRequest {
+
+        @Nullable
+        @SerializedName("language_code")
+        @Expose
+        private String language_code;
+
+        @Nullable
+        @SerializedName("timezone")
+        @Expose
+        private String timezone;
+
+        @Nullable
+        @SerializedName("biometric_login_enabled")
+        @Expose
+        private Boolean biometric_login_enabled;
+
+        @Nullable
+        @SerializedName("push_enabled")
+        @Expose
+        private Boolean push_enabled;
+
+        @Nullable
+        @SerializedName("push_new_messages")
+        @Expose
+        private Boolean push_new_messages;
+
+        @Nullable
+        @SerializedName("push_events")
+        @Expose
+        private Boolean push_events;
+
+        @Nullable
+        @SerializedName("push_news")
+        @Expose
+        private Boolean push_news;
+
+        public UpdateSettingsRequest(
+                @Nullable String languageCode,
+                @Nullable String timezone,
+                @Nullable Boolean biometricLoginEnabled,
+                @Nullable Boolean pushEnabled,
+                @Nullable Boolean pushNewMessages,
+                @Nullable Boolean pushEvents,
+                @Nullable Boolean pushNews
+        ) {
+            this.language_code = languageCode;
+            this.timezone = timezone;
+            this.biometric_login_enabled = biometricLoginEnabled;
+            this.push_enabled = pushEnabled;
+            this.push_new_messages = pushNewMessages;
+            this.push_events = pushEvents;
+            this.push_news = pushNews;
+        }
+
+        @Nullable public String getLanguageCode() { return language_code; }
+        @Nullable public String getTimezone() { return timezone; }
+        @Nullable public Boolean getBiometricLoginEnabled() { return biometric_login_enabled; }
+        @Nullable public Boolean getPushEnabled() { return push_enabled; }
+        @Nullable public Boolean getPushNewMessages() { return push_new_messages; }
+        @Nullable public Boolean getPushEvents() { return push_events; }
+        @Nullable public Boolean getPushNews() { return push_news; }
+    }
+
     public static final class UpdateProfileRequest {
 
         @Nullable
@@ -767,4 +970,5 @@ public class ProfileRepository {
             return location_state;
         }
     }
+
 }

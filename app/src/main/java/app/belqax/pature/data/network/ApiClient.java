@@ -74,7 +74,7 @@ public final class ApiClient {
         };
 
         TokenAuthenticator tokenAuthenticator =
-                new TokenAuthenticator(API_BASE_URL, authStorage);
+                new TokenAuthenticator(authStorage,API_BASE_URL);
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
