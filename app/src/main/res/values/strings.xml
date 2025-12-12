@@ -75,7 +75,14 @@
     <string name="profile_open_settings_error">Не удалось открыть настройки профиля.</string>
     <string name="profile_open_edit_error">Не удалось открыть экран редактирования.</string>
     <string name="profile_change_avatar_stub">Загрузка/смена фото будет доступна позже.</string>
-
+    <string name="profile_name_empty_error">Имя не должно быть пустым</string>
+    <string name="profile_age_invalid_error">Некорректный возраст</string>
+    <string name="profile_about_too_long_error">Текст «О себе» слишком длинный</string>
+    <string name="profile_location_too_long_error">Слишком длинное название места</string>
+    <string name="profile_avatar_read_error">Не удалось прочитать файл изображения</string>
+    <string name="profile_dialog_save">Сохранить</string>
+    <string name="profile_dialog_cancel">Отмена</string>
+    
     <!-- Редактирование полей профиля -->
     <string name="profile_edit_close">Закрыть</string>
     <string name="profile_edit_save">Сохранить</string>
@@ -179,5 +186,8 @@
     <string name="profile_camera_create_file_error">Не удалось подготовить файл для фото.</string>
     <string name="profile_avatar_removed">Фото профиля удалено.</string>
     <string name="profile_avatar_crop_failed">Не удалось обработать фото.</string>
+    <string name="profile_avatar_remove_success">Фото профиля удалено.</string>
+
+
 
 </resources>

@@ -3,4 +3,7 @@
     <files-path
         name="avatar_images"
         path="." />
+    <cache-path
+        name="avatar_cache_images"
+        path="images/" />
 </paths>

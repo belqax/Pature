@@ -36,6 +36,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.retrofit2)
+    implementation(libs.retrofit2.converter.gson)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
     implementation(libs.ucrop)
     implementation(libs.glide)
     annotationProcessor(libs.glide.compiler)
