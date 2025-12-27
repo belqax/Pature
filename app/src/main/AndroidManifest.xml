@@ -53,9 +53,12 @@
             android:name=".activity.EditProfileFieldActivity"
             android:exported="false">
         </activity>
+        <activity android:name=".activity.MyAnimalsActivity" />
+        <activity android:name=".activity.AnimalFormActivity" />
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:exported="false"/>
+
     </application>
 
 </manifest>

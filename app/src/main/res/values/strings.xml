@@ -215,6 +215,52 @@
     <string name="change_password_error_new_min">Минимум 8 символов</string>
     <string name="change_password_error_same">Новый пароль должен отличаться от старого</string>
     <string name="change_password_error_confirm">Пароли не совпадают</string>
+    <string name="profile_my_animals">Мои животные</string>
+    <string name="my_animals_title">Мои животные</string>
+    <string name="my_animals_edit">Редактирование</string>
+    <string name="my_animals_add">Добавить животное</string>
+    <string name="my_animals_load_error">Не удалось загрузить животных</string>
+    <string name="animal_form_name">Имя</string>
+    <string name="animal_form_species">Вид</string>
+    <string name="animal_form_breed">Порода</string>
+    <string name="animal_form_sex">Пол</string>
+    <string name="animal_form_dob">Дата рождения</string>
+    <string name="animal_form_age_years">Возраст (лет)</string>
+    <string name="animal_form_age_months">Возраст (мес)</string>
 
+    <string name="animal_form_weight_kg">Вес (кг)</string>
+    <string name="animal_form_height_cm">Рост (см)</string>
+    <string name="animal_form_color">Окрас</string>
+    <string name="animal_form_color_other">Окрас (другое)</string>
+    <string name="animal_form_pattern">Рисунок</string>
+
+    <string name="animal_form_is_neutered">Кастрация/стерилизация</string>
+    <string name="animal_form_is_vaccinated">Вакцинация</string>
+    <string name="animal_form_is_chipped">Чип</string>
+    <string name="animal_form_chip_number">Номер чипа</string>
+
+    <string name="animal_form_temperament_note">Характер</string>
+    <string name="animal_form_description">Описание</string>
+
+
+    <string name="animal_form_city">Город или адрес</string>
+    <string name="animal_form_city_hint">Начните вводить (минимум 3 символа) и выберите вариант из списка.</string>
+
+    <string name="animal_form_error_address_required">Выберите адрес из подсказок</string>
+
+    <string name="animal_form_create_title">Добавить животное</string>
+    <string name="animal_form_edit_title">Редактировать животное</string>
+    <string name="animal_form_load_error">Не удалось загрузить данные животного</string>
+    <string name="animal_form_save_error">Не удалось сохранить</string>
+
+    <string name="animal_form_save">Сохранить</string>
+
+    <string name="animal_form_error_name_required">Введите имя</string>
+    <string name="animal_form_error_species_required">Выберите вид</string>
+    <string name="animal_form_error_sex_required">Выберите пол</string>
+    <string name="animal_form_error_chip_number_required">Введите номер чипа</string>
+    <string name="animal_form_error_date_invalid">Некорректная дата рождения</string>
+    <string name="animal_form_error_number_invalid">Некорректное число</string>
+    <string name="animal_form_error_date_future">Дата рождения не может быть в будущем</string>
 
 </resources>

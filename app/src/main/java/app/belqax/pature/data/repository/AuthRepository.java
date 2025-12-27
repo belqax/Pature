@@ -384,7 +384,11 @@ public class AuthRepository {
             ) {
                 if (!response.isSuccessful() || response.body() == null) {
                     String message = extractErrorMessage(response, "Не удалось обновить сессию: " + response.code());
-                    authStorage.clearAll();
+
+                    if (response.code() == 401) {
+                        authStorage.clearAll();
+                    }
+
                     callback.onError(message);
                     return;
                 }
@@ -396,7 +400,6 @@ public class AuthRepository {
 
             @Override
             public void onFailure(@NonNull Call<TokenPairDto> call, @NonNull Throwable t) {
-                authStorage.clearAll();
                 callback.onError("Сетевая ошибка при обновлении сессии: " + safeMessage(t));
             }
         });

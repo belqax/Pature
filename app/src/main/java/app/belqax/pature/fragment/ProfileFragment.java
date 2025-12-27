@@ -28,6 +28,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.button.MaterialButton;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.ByteArrayOutputStream;
@@ -79,6 +80,8 @@ public class ProfileFragment extends Fragment {
     private ImageButton profileEditAboutButton;
     private ImageButton profileEditLocationButton;
     private ImageButton settingsButton;
+    private MaterialButton myAnimalsButton;
+
 
     private ProfileRepository profileRepository;
 
@@ -269,6 +272,8 @@ public class ProfileFragment extends Fragment {
         profileEditAboutButton = root.findViewById(R.id.profileEditAboutButton);
         profileEditLocationButton = root.findViewById(R.id.profileEditLocationButton);
         settingsButton = root.findViewById(R.id.profileSettingsButton);
+        myAnimalsButton = root.findViewById(R.id.profileMyAnimalsButton);
+
     }
 
     private void setupClickListeners() {
@@ -311,6 +316,9 @@ public class ProfileFragment extends Fragment {
                     currentLocation
             );
         });
+
+        myAnimalsButton.setOnClickListener(v -> openMyAnimals());
+
         settingsButton.setOnClickListener(v -> openSettings());
 
         profileAvatarImage.setOnClickListener(v -> showAvatarActionsBottomSheet());
@@ -328,6 +336,14 @@ public class ProfileFragment extends Fragment {
             return;
         }
         Intent intent = new Intent(getContext(), ProfileSettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void openMyAnimals() {
+        if (!isAdded()) {
+            return;
+        }
+        Intent intent = new Intent(requireContext(), app.belqax.pature.activity.MyAnimalsActivity.class);
         startActivity(intent);
     }
 

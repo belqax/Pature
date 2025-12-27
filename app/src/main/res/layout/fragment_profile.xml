@@ -32,7 +32,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <ImageButton
             android:id="@+id/profileSettingsButton"
             android:layout_width="40dp"
@@ -45,6 +44,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="?colorOnSurface" />
+
+        <!-- УБРАЛИ кнопку животных отсюда -->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -86,7 +87,6 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-
                         android:id="@+id/profileAvatarImage"
                         android:layout_width="96dp"
                         android:layout_height="96dp"
@@ -98,9 +98,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Блок: Имя -->
-
-
+            <!-- Имя -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,7 +135,7 @@
                 android:layout_marginTop="12dp"
                 android:background="?attr/colorOutline" />
 
-            <!-- Блок: Возраст -->
+            <!-- Возраст -->
             <TextView
                 android:id="@+id/profileAgeLabel"
                 android:layout_width="match_parent"
@@ -182,7 +180,7 @@
                 android:layout_marginTop="12dp"
                 android:background="?attr/colorOutline" />
 
-            <!-- Блок: О себе -->
+            <!-- О себе -->
             <TextView
                 android:id="@+id/profileAboutLabel"
                 android:layout_width="match_parent"
@@ -230,7 +228,7 @@
                 android:layout_marginTop="12dp"
                 android:background="?attr/colorOutline" />
 
-            <!-- Блок: Местоположение -->
+            <!-- Местоположение -->
             <TextView
                 android:id="@+id/profileLocationLabel"
                 android:layout_width="match_parent"
@@ -270,6 +268,28 @@
                     android:contentDescription="@string/profile_edit_location"
                     app:tint="?attr/colorOnSurface" />
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:background="?attr/colorOutline" />
+
+            <!-- КНОПКА "МОИ ЖИВОТНЫЕ" НА ВСЮ ШИРИНУ -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/profileMyAnimalsButton"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/profile_my_animals"
+                android:textAllCaps="false"
+                android:textColor="?attr/colorOnSurface"
+                app:icon="@drawable/ic_cat"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:iconTint="?attr/colorOnSurface"
+                app:cornerRadius="10dp" />
 
         </LinearLayout>
     </ScrollView>

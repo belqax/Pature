@@ -18,6 +18,7 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import app.belqax.pature.R;
 import app.belqax.pature.data.repository.ProfileRepository;
 import app.belqax.pature.ui.ChangePasswordBottomSheet;
+import app.belqax.pature.ui.PrivacyVisibilityBottomSheet;
 
 public class ProfileSettingsActivity extends AppCompatActivity {
 
@@ -230,22 +231,28 @@ public class ProfileSettingsActivity extends AppCompatActivity {
         String current = getCachedProfileVisibility();
         if (current == null || current.trim().isEmpty()) current = "everyone";
 
-        showVisibilityPickerDialog(
+        PrivacyVisibilityBottomSheet sheet = PrivacyVisibilityBottomSheet.newInstance(
                 getString(R.string.profile_settings_hide_profile),
-                current,
-                selected -> patchPrivacy(selected, null)
+                getString(R.string.profile_settings_privacy_sheet_description_default),
+                current
         );
+
+        sheet.setListener(value -> patchPrivacy(value, null));
+        sheet.show(getSupportFragmentManager(), "PrivacyVisibilityBottomSheet_profile");
     }
 
     private void showPhotosVisibilityDialog() {
         String current = getCachedPhotosVisibility();
         if (current == null || current.trim().isEmpty()) current = "matches";
 
-        showVisibilityPickerDialog(
+        PrivacyVisibilityBottomSheet sheet = PrivacyVisibilityBottomSheet.newInstance(
                 getString(R.string.profile_settings_hide_photos),
-                current,
-                selected -> patchPrivacy(null, selected)
+                getString(R.string.profile_settings_privacy_sheet_description_default),
+                current
         );
+
+        sheet.setListener(value -> patchPrivacy(null, value));
+        sheet.show(getSupportFragmentManager(), "PrivacyVisibilityBottomSheet_photos");
     }
 
     /**

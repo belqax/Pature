@@ -4,4 +4,81 @@
         <item>0</item>
         <item>20</item>
     </array>
+
+    <string-array name="animal_species">
+        <item>Кошка</item>
+        <item>Собака</item>
+        <item>Хорёк</item>
+        <item>Медведь</item>
+        <item>Другое</item>
+    </string-array>
+
+    <string-array name="animal_sex">
+        <item>мужской</item>
+        <item>женский</item>
+    </string-array>
+
+    <string-array name="animal_status">
+        <item>active</item>
+        <item>hidden</item>
+        <item>archived</item>
+    </string-array>
+
+    <!-- Примерные стандартные окрасы -->
+    <string-array name="animal_colors">
+        <item>белый</item>
+        <item>чёрный</item>
+        <item>серый</item>
+        <item>рыжий</item>
+        <item>коричневый</item>
+        <item>трёхцветный</item>
+        <item>черепаховый</item>
+        <item>другое…</item>
+    </string-array>
+
+    <string-array name="animal_patterns">
+        <item>однотонный</item>
+        <item>полосатый</item>
+        <item>пятнистый</item>
+        <item>мраморный</item>
+        <item>табби</item>
+        <item>другое…</item>
+    </string-array>
+
+    <!-- Породы: кошки -->
+    <string-array name="breeds_cat">
+        <item>Шотландская вислоухая</item>
+        <item>Британская короткошёрстная</item>
+        <item>Сиамская</item>
+        <item>Мейн-кун</item>
+        <item>Сфинкс</item>
+        <item>Бенгальская</item>
+        <item>Дворовая (без породы)</item>
+        <item>Другое…</item>
+    </string-array>
+
+    <!-- Породы: собаки -->
+    <string-array name="breeds_dog">
+        <item>Лабрадор</item>
+        <item>Немецкая овчарка</item>
+        <item>Хаски</item>
+        <item>Йоркширский терьер</item>
+        <item>Шпиц</item>
+        <item>Корги</item>
+        <item>Дворняга (без породы)</item>
+        <item>Другое…</item>
+    </string-array>
+
+    <!-- Породы: хорёк -->
+    <string-array name="breeds_ferret">
+        <item>Домашний хорёк</item>
+        <item>Другое…</item>
+    </string-array>
+
+    <!-- Породы: медведь -->
+    <string-array name="breeds_bear">
+        <item>Бурый медведь</item>
+        <item>Белый медведь</item>
+        <item>Другое…</item>
+    </string-array>
 </resources>

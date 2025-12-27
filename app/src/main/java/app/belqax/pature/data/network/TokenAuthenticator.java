@@ -1,16 +1,21 @@
 package app.belqax.pature.data.network;
 
+import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
 import app.belqax.pature.data.storage.AuthStorage;
 import okhttp3.Authenticator;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -30,6 +35,9 @@ public final class TokenAuthenticator implements Authenticator {
 
     private static final int MAX_AUTH_RETRIES = 2;
 
+    private static final long NETWORK_TIMEOUT_SECONDS = 30L;
+    private static final String APP_VERSION = "0.1.0-dev";
+
     private final AuthStorage authStorage;
     private final RefreshApi refreshApi;
 
@@ -41,8 +49,30 @@ public final class TokenAuthenticator implements Authenticator {
     ) {
         this.authStorage = Objects.requireNonNull(authStorage, "authStorage");
 
-        // Важно: refresh-клиент должен быть "чистым": без этого Authenticator, иначе можно закольцеваться.
+        Interceptor deviceHeadersInterceptor = chain -> {
+            Request original = chain.request();
+
+            String deviceId = authStorage.getOrCreateDeviceId();
+            String platform = "android";
+            String deviceModel = Build.MANUFACTURER + " " + Build.MODEL;
+            String osVersion = Build.VERSION.RELEASE;
+
+            Request request = original.newBuilder()
+                    .header("X-Device-Id", deviceId)
+                    .header("X-Platform", platform)
+                    .header("X-Device-Model", deviceModel)
+                    .header("X-OS-Version", osVersion)
+                    .header("X-App-Version", APP_VERSION)
+                    .build();
+
+            return chain.proceed(request);
+        };
+
         OkHttpClient refreshClient = new OkHttpClient.Builder()
+                .addInterceptor(deviceHeadersInterceptor)
+                .connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -62,10 +92,15 @@ public final class TokenAuthenticator implements Authenticator {
             return null;
         }
 
+        String path = response.request().url().encodedPath();
+        if (path != null && (path.contains("/auth/login") || path.contains("/auth/refresh") || path.contains("/auth/logout"))) {
+            Log.w(TAG, "authenticate: 401 on auth endpoint, not retrying. url=" + response.request().url());
+            return null;
+        }
+
         String requestAccess = extractBearerToken(response.request());
         String currentAccess = authStorage.getAccessToken();
 
-        // 1) Если другой поток уже обновил access, просто повторяем запрос с актуальным токеном.
         if (currentAccess != null
                 && !currentAccess.trim().isEmpty()
                 && requestAccess != null
@@ -77,10 +112,8 @@ public final class TokenAuthenticator implements Authenticator {
                     .build();
         }
 
-        // 2) Сериализация refresh: только один поток делает refresh, остальные ждут.
         refreshLock.lock();
         try {
-            // Повторная проверка после ожидания lock: вдруг пока ждали, токен обновился.
             String accessAfterWait = authStorage.getAccessToken();
             if (accessAfterWait != null
                     && !accessAfterWait.trim().isEmpty()
@@ -93,21 +126,25 @@ public final class TokenAuthenticator implements Authenticator {
             }
 
             String refreshToken = authStorage.getRefreshToken();
+            String login = authStorage.getLogin();
+
             if (refreshToken == null || refreshToken.trim().isEmpty()) {
                 Log.e(TAG, "authenticate: no refresh token, cannot refresh. url=" + response.request().url());
+                return null;
+            }
+            if (login == null || login.trim().isEmpty()) {
+                Log.e(TAG, "authenticate: no login saved, cannot refresh. url=" + response.request().url());
                 return null;
             }
 
             Log.i(TAG, "authenticate: refreshing tokens, url=" + response.request().url());
 
-            RefreshRequest body = new RefreshRequest(refreshToken);
-            Call<TokenPair> call = refreshApi.refresh(body);
+            RefreshRequest body = new RefreshRequest(refreshToken, login);
 
-            retrofit2.Response<TokenPair> refreshResp;
+            retrofit2.Response<TokenPairDto> refreshResp;
             try {
-                refreshResp = call.execute();
+                refreshResp = refreshApi.refresh(body).execute();
             } catch (IOException io) {
-                // Сеть/таймауты не должны чистить сессию.
                 Log.w(TAG, "authenticate: refresh network error: " + io);
                 return null;
             } catch (Exception ex) {
@@ -116,27 +153,29 @@ public final class TokenAuthenticator implements Authenticator {
             }
 
             if (refreshResp.isSuccessful() && refreshResp.body() != null) {
-                TokenPair pair = refreshResp.body();
-                if (pair.accessToken == null || pair.accessToken.trim().isEmpty()) {
-                    Log.e(TAG, "authenticate: refresh success but access token empty");
+                TokenPairDto pair = refreshResp.body();
+
+                if (pair.access_token == null || pair.access_token.trim().isEmpty()) {
+                    Log.e(TAG, "authenticate: refresh success but access_token empty");
+                    return null;
+                }
+                if (pair.refresh_token == null || pair.refresh_token.trim().isEmpty()) {
+                    Log.e(TAG, "authenticate: refresh success but refresh_token empty");
                     return null;
                 }
 
-                // Сохраняем и access, и refresh (если сервер ротирует refresh — это критично).
-                authStorage.saveTokens(pair.accessToken, pair.refreshToken);
+                authStorage.saveTokens(pair.access_token, pair.refresh_token);
 
                 Log.i(TAG, "authenticate: refresh success, retrying original request");
 
                 return response.request().newBuilder()
-                        .header(AUTH_HEADER, BEARER_PREFIX + pair.accessToken)
+                        .header(AUTH_HEADER, BEARER_PREFIX + pair.access_token)
                         .build();
             }
 
-            // 401 на refresh означает недействительный refresh (или он уже был ротирован конкурентным запросом).
-            // Мы уже сделали двойную проверку "токен обновился ли другим потоком", так что здесь можно логаутить.
             int code = refreshResp.code();
             if (code == 401) {
-                Log.e(TAG, "authenticate: refresh rejected (code=401). Clearing session.");
+                Log.e(TAG, "authenticate: refresh rejected (401). Clearing session.");
                 authStorage.clearAll();
                 return null;
             }
@@ -171,23 +210,29 @@ public final class TokenAuthenticator implements Authenticator {
         return h.substring(BEARER_PREFIX.length()).trim();
     }
 
-    // ===== Retrofit API =====
-
     private interface RefreshApi {
         @POST("auth/refresh")
-        Call<TokenPair> refresh(@Body RefreshRequest body);
+        Call<TokenPairDto> refresh(@Body RefreshRequest body);
     }
 
     private static final class RefreshRequest {
+        @SerializedName("refresh_token")
         final String refresh_token;
 
-        RefreshRequest(@NonNull String refreshToken) {
+        @SerializedName("login")
+        final String login;
+
+        RefreshRequest(@NonNull String refreshToken, @NonNull String login) {
             this.refresh_token = refreshToken;
+            this.login = login;
         }
     }
 
-    public static final class TokenPair {
-        public String accessToken;
-        public String refreshToken;
+    public static final class TokenPairDto {
+        @SerializedName("access_token")
+        public String access_token;
+
+        @SerializedName("refresh_token")
+        public String refresh_token;
     }
 }

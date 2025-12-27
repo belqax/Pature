@@ -370,7 +370,7 @@ public final class AnimalRepository {
         // Likes
         @POST("animals/{id}/like")
         Call<AnimalLikeResultDto> likeAnimal(@Path("id") long animalId, @Body AnimalLikeRequestDto body);
-
+        
         // Photos
         @Multipart
         @POST("animals/{id}/photos")

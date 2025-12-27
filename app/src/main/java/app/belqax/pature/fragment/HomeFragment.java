@@ -135,6 +135,7 @@ public final class HomeFragment extends Fragment {
             Log.e(TAG, msg);
             Toast.makeText(requireContext(), "Не удалось отправить реакцию", Toast.LENGTH_SHORT).show();
         });
+
     }
 
     private void maybePrefetch() {
